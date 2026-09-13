@@ -20,6 +20,8 @@ The app-facing adapter contract (`lib/server/ai/types.ts`) is unchanged: structu
 - `items` are flyer text only and are not sent to the image model.
 - Prompts contain no name, contact, place or other flyer PII. The model is told not to render any text.
 - The `AI로 재현한 예상 모습` label is rendered by the app/flyer, not by the model.
+- Sunglasses and face masks in the photo are always kept; the model must never invent the facial features they hide (team decision 2026-09-14).
+- If a `body_visible` photo shows several people, only the most central, prominent person is edited. The app does not ask who the missing person is, so group photos with the person at the edge can edit the wrong person; guardians are expected to upload a photo of the missing person alone.
 
 ## Reliability
 
