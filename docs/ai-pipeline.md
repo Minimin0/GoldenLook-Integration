@@ -11,7 +11,7 @@ The app-facing adapter contract (`lib/server/ai/types.ts`) is unchanged: structu
 ## Modes
 
 - `body_visible`: edits the original photo. Output keeps the original aspect ratio. Face, identity, background, pose and lighting are preserved. A known garment **type** reshapes that garment (e.g. padded jacket → short-sleeve T-shirt); a known **color only** recolors it and keeps its shape.
-- `face_only`: uses the face photo as identity reference and generates a natural standing full-body image (3:4) reflecting age, height, gender and body type. A missing top/bottom type falls back to plain, neutral, logo-free clothing.
+- `face_only`: uses the face photo as identity reference and generates a natural standing full-body image (3:4, 2K) reflecting age, height, gender and body type, keeping the reference facial expression. A missing top/bottom type falls back to plain, neutral, logo-free clothing.
 
 ## Input rules
 
@@ -30,7 +30,7 @@ The app-facing adapter contract (`lib/server/ai/types.ts`) is unchanged: structu
 
 ## Cost
 
-Gemini 3.1 Flash Image, 1K output: about $0.067 per image (no free tier). One successful case uses 1–4 images (first result + up to 3 regenerations); a retried attempt can add one more.
+Gemini 3.1 Flash Image (no free tier): `body_visible` uses 1K output, about $0.067 per image and ~10s; `face_only` uses 2K output, about $0.101 per image and ~17s, because the face is small in a full-body frame and 2K keeps it sharper. One successful case uses 1–4 images (first result + up to 3 regenerations); a retried attempt can add one more.
 
 ## Evaluation
 
