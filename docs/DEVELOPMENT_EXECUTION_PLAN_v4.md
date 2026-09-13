@@ -67,6 +67,7 @@ Python/별도 서비스가 필요하면 AI 담당자가 추가해도 된다. 단
 - cases schema
 - private Storage
 - create/get/patch/delete
+- owner-only case list (`GET /api/cases`)
 - Image AI adapter 호출
 - generate attempt 관리
 - publish/shareId

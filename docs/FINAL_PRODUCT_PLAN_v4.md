@@ -382,6 +382,7 @@ SegFormer/Modal은 v4 필수 인프라가 아니다. AI 담당자의 실험용/�
 - `original_path`
 - `generated_path`
 - `generation_attempts`
+- `generation_attempt_id` (동시 요청 구분용 내부 필드)
 - `generation_status`
 - `name`, `age`, `height_cm`, `missing_at`, `place`, `contact`, `notes`
 - `created_at`, `updated_at`, `published_at`
@@ -403,6 +404,7 @@ SegFormer/Modal은 v4 필수 인프라가 아니다. AI 담당자의 실험용/�
 
 | Method | Path | 역할 |
 |---|---|---|
+| GET | `/api/cases` | 내 전단 목록 |
 | POST | `/api/cases` | case + 사진 생성 |
 | GET/PATCH/DELETE | `/api/cases/[id]` | 조회 / 사진·입력 수정 / 삭제 |
 | POST | `/api/cases/[id]/generate` | Gemini 이미지 생성/편집 |
