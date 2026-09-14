@@ -409,7 +409,8 @@ SegFormer/Modal은 v4 필수 인프라가 아니다. AI 담당자의 실험용/�
 | GET/PATCH/DELETE | `/api/cases/[id]` | 조회 / 사진·입력 수정 / 삭제 |
 | POST | `/api/cases/[id]/generate` | Gemini 이미지 생성/편집 |
 | POST | `/api/cases/[id]/publish` | 전단 발행 |
-| GET | `/api/flyer/[shareId]` | 전단 PNG |
+| GET | `/api/flyer/[shareId]` | 전단 PNG, 1080x1350 |
+| GET | `/api/flyer/[shareId]/meta` | 공개 연락 버튼용 최소 메타 |
 
 AI 담당자 내부 adapter endpoint/함수 구조는 자유다. 다만 위 앱-facing contract 변경 시 보고한다.
 
