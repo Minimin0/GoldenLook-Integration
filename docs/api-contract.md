@@ -9,7 +9,8 @@ Private routes use `Authorization: Bearer <Supabase access token>`. Non-owned ca
 | GET/PATCH/DELETE | `/api/cases/[id]` | owner | read, update, delete |
 | POST | `/api/cases/[id]/generate` | owner | generate or regenerate image |
 | POST | `/api/cases/[id]/publish` | owner | idempotent publish |
-| GET | `/api/flyer/[shareId]` | public | flyer PNG |
+| GET | `/api/flyer/[shareId]` | public | flyer PNG, 1080x1350 |
+| GET | `/api/flyer/[shareId]/meta` | public | minimum published flyer metadata |
 
 The Backend also exposes authenticated cron cleanup at `/api/cron/cleanup`; it is not an app-facing route.
 
@@ -18,3 +19,5 @@ The Backend also exposes authenticated cron cleanup at `/api/cron/cleanup`; it i
 Generation states are `PENDING`, `GENERATING`, `GENERATED`, and `TEMPORARY_ERROR`. The first success plus three successful regenerations are allowed. Internal attempt UUIDs prevent stale requests from finishing or aborting newer requests. Clients handle `GENERATION_LIMIT`, `DAILY_GENERATION_LIMIT`, `GENERATION_IN_PROGRESS`, and `CASE_PUBLISHED` distinctly.
 
 Private image URLs expire after five minutes. Public output never includes case UUID, user ID, storage path, generation attempt ID, manage token, or internal report data.
+
+Public flyer metadata is published-only and returns only flyer-visible fields: `contact`, nullable `name`, formatted KST `missingAt`, and nullable `place`. The public PNG and metadata use the same share ID validation and privacy-safe no-store cache policy.

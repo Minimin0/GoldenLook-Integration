@@ -6,7 +6,8 @@
 - Use `GET /api/cases` for My Flyers. It returns `{ cases }`, newest first, capped at 50.
 - Create with multipart `photo`, `photoMode`, and optional `data` JSON. PATCH accepts JSON or multipart `photo` plus `data`.
 - Treat signed `originalUrl` and `generatedUrl` as five-minute values; refresh GET/list when expired.
-- Render `label` (`AI로 재현한 예상 모습`) beside every generated result. The public `/c/[shareId]` page can display or share `/api/flyer/[shareId]` directly; no public JSON case endpoint exists in v4.
+- Render `label` (`AI로 재현한 예상 모습`) beside every generated result. The public `/c/[shareId]` page displays or shares `/api/flyer/[shareId]` directly. Use `GET /api/flyer/[shareId]/meta` only for the public contact button and visible share title data.
+- Public flyer PNG is 1080x1350. `missingAt` in PNG and meta is formatted as KST Korean text, for example `2026년 9월 13일 오후 3시 30분`.
 - Disable regeneration when `regenerationsRemaining` is zero. Distinguish daily quota from case regeneration exhaustion using `DAILY_GENERATION_LIMIT` versus `GENERATION_LIMIT`.
 - After publish, PATCH/generate return `CASE_PUBLISHED`; delete remains available. Public pages must be `noindex`.
 - Remove the current Frontend-only `appearance.glasses` field before sending requests; it is not part of the frozen v4 garment contract.
